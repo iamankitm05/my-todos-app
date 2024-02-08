@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:my_todos_app/models/todo.dart';
 
 class TodosCard extends StatelessWidget {
-  const TodosCard({super.key});
+  final Todo todo;
+  const TodosCard({
+    super.key,
+    required this.todo,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +19,10 @@ class TodosCard extends StatelessWidget {
       child: Row(
         children: [
           Checkbox(
-            value: false,
+            value: todo.isCompleted,
             onChanged: (value) {},
           ),
-          const Text('Todo #')
+          Text(todo.text)
         ],
       ),
     );

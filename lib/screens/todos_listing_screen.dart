@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:my_todos_app/models/todo.dart';
 import 'package:my_todos_app/routes/routes_constant.dart';
 import 'package:my_todos_app/widgets/custom_appbar.dart';
 import 'package:my_todos_app/widgets/todos_card.dart';
@@ -19,7 +20,13 @@ class TodosListingScreen extends StatelessWidget {
             itemCount: 20,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) => const TodosCard(),
+            itemBuilder: (context, index) => TodosCard(
+              todo: Todo(
+                id: index,
+                isCompleted: index % 2 == 0,
+                text: 'Todo #$index',
+              ),
+            ),
           ),
         ),
       ),
