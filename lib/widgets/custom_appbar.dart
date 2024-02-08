@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:my_todos_app/routes/routes_constant.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double? titleSpacing;
@@ -16,17 +18,20 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       titleSpacing: titleSpacing,
       actions: [
         PopupMenuButton(
-          itemBuilder: (context) => _buildMenuItems(items: []),
+          itemBuilder: (context) => _buildMenuItems(context: context),
         )
       ],
     );
   }
 
   List<PopupMenuEntry> _buildMenuItems(
-      {required List<Map<String, dynamic>> items}) {
+      {required BuildContext context}) {
     return [
-      const PopupMenuItem(
-        child: Row(
+      PopupMenuItem(
+        onTap: () {
+          context.goNamed(RouteNameConstant.login);
+        },
+        child: const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Logout'),

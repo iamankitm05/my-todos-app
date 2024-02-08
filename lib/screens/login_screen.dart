@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_todos_app/routes/routes_constant.dart';
+import 'package:my_todos_app/utils/show_snackbar_alert.dart';
 import 'package:my_todos_app/widgets/custom_appbar.dart';
 import 'package:my_todos_app/widgets/custom_button.dart';
 import 'package:my_todos_app/widgets/custom_text_field.dart';
@@ -19,7 +20,7 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             children: [
               const CustomTextField(
-                hintText: 'Username',
+                hintText: 'Email',
               ),
               const SizedBox(height: 20),
               CustomTextField(
@@ -34,7 +35,14 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 20),
               CustomButton(
                 text: 'Login',
-                onPressed: () => context.goNamed(RouteNameConstant.todosListing),
+                onPressed: () {
+                  showSnackBarAlert(
+                    context: context,
+                    message: 'Invalid Email and Password',
+                    color: Colors.red,
+                  );
+                  context.goNamed(RouteNameConstant.todosListing);
+                },
               ),
               const SizedBox(height: 6),
               Row(
