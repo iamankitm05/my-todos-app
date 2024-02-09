@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_todos_app/bloc/todos/todos_bloc.dart';
 import 'package:my_todos_app/routes/bloc/app_routes_cubit.dart';
 import 'package:my_todos_app/routes/bloc/app_routes_state.dart';
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => AppRoutesCubit()),
+        BlocProvider(create: (context) => TodosBloc()),
       ],
       child: BlocBuilder<AppRoutesCubit, AppRoutesState>(
         builder: (context, state) {

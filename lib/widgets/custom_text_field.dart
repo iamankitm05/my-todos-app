@@ -5,6 +5,7 @@ class CustomTextField extends StatelessWidget {
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final bool obscureText;
+  final TextEditingController? controller;
 
   const CustomTextField({
     super.key,
@@ -12,6 +13,7 @@ class CustomTextField extends StatelessWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.obscureText = false,
+    this.controller,
   });
 
   @override
@@ -29,6 +31,7 @@ class CustomTextField extends StatelessWidget {
     return SizedBox(
       height: 48,
       child: TextField(
+        controller: controller,
         onTapOutside: (event) {
           FocusScope.of(context).unfocus();
         },

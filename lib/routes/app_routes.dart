@@ -28,7 +28,7 @@ class AppRoutes {
           GoRoute(
             name: RouteNameConstant.todoCreation,
             path: 'create-todo',
-            builder: (context, state) => const TodosCreationScreen(),
+            builder: (context, state) => TodosCreationScreen(),
           ),
         ],
       ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_todos_app/models/todo.dart';
+import 'package:my_todos_app/bloc/todos/todos_bloc.dart';
+import 'package:my_todos_app/bloc/todos/todos_state.dart';
 import 'package:my_todos_app/routes/routes_constant.dart';
 import 'package:my_todos_app/widgets/custom_appbar.dart';
 import 'package:my_todos_app/widgets/todos_card.dart';
@@ -16,17 +18,18 @@ class TodosListingScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(20),
-          child: ListView.builder(
-            itemCount: 20,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) => TodosCard(
-              todo: Todo(
-                id: index,
-                isCompleted: index % 2 == 0,
-                text: 'Todo #$index',
-              ),
-            ),
+          child: BlocBuilder<TodosBloc, TodosState>(
+            builder: (context, state) {
+              final todos = (state as TodosContainer).todos;
+              return ListView.builder(
+                itemCount: todos.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) => TodosCard(
+                  todo: todos[index],
+                ),
+              );
+            },
           ),
         ),
       ),
