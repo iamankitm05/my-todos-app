@@ -12,11 +12,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # Set up Flutter using the latest Flutter action
+      # Set up Flutter
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: stable
+          flutter-version: "stable"  # Explicitly specify Flutter version
 
       # Install dependencies
       - name: Install Dependencies
