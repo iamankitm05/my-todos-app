@@ -8,11 +8,11 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      # Checkout repository
+      # Checkout repository using the latest version of actions/checkout
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      # Set up Flutter
+      # Set up Flutter using the latest Flutter action
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -22,7 +22,7 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get
 
-      # Build iOS
+      # Build iOS IPA
       - name: Build iOS IPA
         run: flutter build ipa --release
         env:
